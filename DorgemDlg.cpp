@@ -1090,7 +1090,7 @@ BOOL CDorgemDlg::MotionAnalysis(BITMAPINFOHEADER* pbihBMP, BYTE* pSrcBits, BYTE*
   fResult = fResult / (float) (iHeight * iWidth);
 
   // detect and mark pixels that are significantly different
-  BYTE cThreshold = 25;
+  BYTE cThreshold = 100;
   int iPixCount = 0;
   pSrc = pResBits;
   while (pSrc < pResBits + iSize)
