@@ -850,7 +850,9 @@ BOOL CDorgemDlg::ConnectDevice()
   CWaitCursor wait;
 
   // Connect to the specified device
-  if (!m_pwndPreview->Connect(m_iDeviceID))
+  m_iDeviceID = 0;
+  m_pwndPreview->Connect(m_iDeviceID);
+  /*if (!m_pwndPreview->Connect(m_iDeviceID))
   {
     m_pwndPreview->DestroyWindow();
     EnableItems(FALSE);
@@ -858,7 +860,7 @@ BOOL CDorgemDlg::ConnectDevice()
     // Let the user know
     MsgBoxStop("Failed to connect to device!");
     return(FALSE);
-  }
+  }*/
 
   // Resize the preview window
   CAPSTATUS status;
