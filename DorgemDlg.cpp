@@ -40,6 +40,13 @@
 #include "OptionsDlg.h"
 #include "SInstance.h"
 
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sys/stat.h>
+#include <sstream>
+using namespace std;
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -687,8 +694,11 @@ BOOL CDorgemDlg::DoCapture(CString strJPGFile, BOOL bWebServer, CCaptionManager*
   }
   else
   {
+    struct stat stFileInfo;
+    bool dummyFileExists = (stat("C:\\securitysystem.running", &stFileInfo) == 0);
+
     // Is there any changed since the last capture?
-    if (MotionAnalysis(&bihBMP24, (BYTE*) pBits24, m_pPrevBits))
+    if (dummyFileExists && MotionAnalysis(&bihBMP24, (BYTE*) pBits24, m_pPrevBits))
     {
       TRACE("[CDorgemDlg]DoCapture: Motion has been detected or motion detection is disabled\n");
       CopyMemory(m_pPrevBits, pBits24, bihBMP24.biSizeImage);
